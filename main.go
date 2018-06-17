@@ -11,7 +11,7 @@ func readFrom(reader io.Reader) (data vies.InputData, err error) {
 	return data, nil
 }
 
-func writeToStdOut(writer io.Writer, vatDetail *vies.VatDetails) {
+func writeTo(writer io.Writer, vatDetail *vies.VatDetails) {
 
 }
 
@@ -20,6 +20,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	fmt.Println(inputData)
 }
