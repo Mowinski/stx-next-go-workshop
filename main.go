@@ -24,15 +24,15 @@ func readFrom(reader io.Reader) (data vies.InputData, err error) {
 }
 
 func writeTo(writer io.Writer, vatDetail *vies.VatDetails) {
-	fmt.Fprintln(writer, "Error: ", vatDetail.Error)
-	fmt.Fprintln(writer, "ErrorCode: ", vatDetail.ErrorCode)
-	fmt.Fprintln(writer, "XMLName: ", vatDetail.XMLName)
-	fmt.Fprintln(writer, "CountryCode: ", vatDetail.CountryCode)
-	fmt.Fprintln(writer, "VatNumber: ", vatDetail.VatNumber)
-	fmt.Fprintln(writer, "RequestDate: ", vatDetail.RequestDate)
-	fmt.Fprintln(writer, "Valid: ", vatDetail.Valid)
-	fmt.Fprintln(writer, "Name: ", vatDetail.Name)
-	fmt.Fprintln(writer, "Address: ", vatDetail.Address)
+	fmt.Fprintln(writer, "Error:", vatDetail.Error)
+	fmt.Fprintln(writer, "ErrorCode:", vatDetail.ErrorCode)
+	fmt.Fprintln(writer, "XMLName:", vatDetail.XMLName)
+	fmt.Fprintln(writer, "CountryCode:", vatDetail.CountryCode)
+	fmt.Fprintln(writer, "VatNumber:", vatDetail.VatNumber)
+	fmt.Fprintln(writer, "RequestDate:", vatDetail.RequestDate)
+	fmt.Fprintln(writer, "Valid:", vatDetail.Valid)
+	fmt.Fprintln(writer, "Name:", vatDetail.Name)
+	fmt.Fprintln(writer, "Address:", vatDetail.Address)
 }
 
 func main() {
