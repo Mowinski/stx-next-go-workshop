@@ -1,6 +1,6 @@
 # Taks 1
 
-Implement `readFrom` function in `main.go` file. 
+Implement `Read` function in `main.go` file. 
 
 Expected output:
 
