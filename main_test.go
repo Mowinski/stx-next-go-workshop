@@ -26,7 +26,7 @@ func prepareReader(countryCode, number string) (*os.File, error) {
 	return reader, nil
 }
 
-func TestReadingFromFunction(t *testing.T) {
+func TestReadFunction(t *testing.T) {
 	reader, err := prepareReader("TEST", "1234567890")
 	defer reader.Close()
 
@@ -34,7 +34,7 @@ func TestReadingFromFunction(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	result, err := readFrom(reader)
+	result, err := Read(reader)
 
 	if err != nil {
 		t.Errorf("Error expect %s", err)

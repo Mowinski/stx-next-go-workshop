@@ -2,23 +2,36 @@ package main
 
 import (
 	"fmt"
-	"github.com/Mowinski/stx-next-go-workshop/vies"
 	"io"
 	"os"
 )
 
-func readFrom(reader io.Reader) (data vies.InputData, err error) {
+// VATNo describe a basic information about company, such as country code and vat number
+type VATNo struct {
+	// The country where the company has headquater
+	CountryCode string
+	// The VAT number of company
+	VATNumber string
+}
+
+// Function creates VATNo object from reader.
+// Reader should prepare a data in two lines, in first one should be the country code,
+// in second one the vat number.
+// Function returns the VATNo object and any write error encounter.
+func Read(reader io.Reader) (VATNo, error) {
+	var data VATNo
 	return data, nil
 }
 
-func writeTo(writer io.Writer, vatDetail *vies.VatDetails) {
-
+func abort(err error) {
+	fmt.Println(err)
+	os.Exit(1)
 }
 
 func main() {
-	inputData, err := readFrom(os.Stdin)
+	vatNo, err := Read(os.Stdin)
 	if err != nil {
-		panic(err)
+		abort(err)
 	}
-	fmt.Println(inputData)
+	fmt.Println(vatNo)
 }
