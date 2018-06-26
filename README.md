@@ -1,6 +1,6 @@
-# Taks 2
+# Taks 3
 
-Implement `Print` function in `vies/print.go` file.
+Implement `prepareViesRequestBody` function in `vies/vies.go` file.
 
 To run test, call this command:
 ```go test ./...```
