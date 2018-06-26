@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/Mowinski/stx-next-go-workshop/vatno"
+	"github.com/Mowinski/stx-next-go-workshop/vies"
 )
 
 func abort(err error) {
@@ -11,5 +14,17 @@ func abort(err error) {
 }
 
 func main() {
+	for {
+		vatNo, err := vatno.Read(os.Stdin)
+		if err != nil {
+			abort(err)
+		}
 
+		vatDetail, err := vies.Query(vatNo)
+		if err != nil {
+			abort(err)
+		}
+
+		vatDetail.Print(os.Stdout)
+	}
 }
