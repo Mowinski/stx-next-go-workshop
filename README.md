@@ -7,8 +7,8 @@ This application verify VAT number in Europe [VIES](https://ec.europa.eu/taxatio
 ## Example output for valid VAT number
 ```
 ➜  stx-next-go-workshop git:(master) ✗ ./stx-next-go-workshop
-Enter country code: GB
-Enter VAT: <VALIDNUMBER>
+GB
+<VALIDNUMBER>
 Error:
 ErrorCode:
 XMLName: {http://schemas.xmlsoap.org/soap/envelope/ Envelope}
@@ -26,8 +26,8 @@ POSTALCODE
 ## Example output for invalid VAT number
 ```
 ➜  stx-next-go-workshop git:(master) ✗ ./stx-next-go-workshop
-Enter country code: GB
-Enter VAT: <INVALIDNUMBER>
+GB
+<INVALIDNUMBER>
 Error:
 ErrorCode:
 XMLName: {http://schemas.xmlsoap.org/soap/envelope/ Envelope}
