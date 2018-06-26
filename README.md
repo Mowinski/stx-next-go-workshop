@@ -1,6 +1,6 @@
-# Taks 4
+# Taks 5
 
-Implement `decodeResponse` function in `vies/vies.go` file.
+Implement `Query` function in `vies/vies.go` file.
 
 To run test, call this command:
 ```go test ./...```

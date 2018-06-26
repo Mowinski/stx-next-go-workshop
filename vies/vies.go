@@ -2,6 +2,7 @@ package vies
 
 import (
 	"bytes"
+	"encoding/xml"
 	"fmt"
 	"io"
 	"net/http"
@@ -45,5 +46,18 @@ func sendViesPostRequest(body io.Reader) (*http.Response, error) {
 
 func decodeResponse(r io.Reader) (VatDetails, error) {
 	var vatDetails VatDetails
-	return vatDetails, nil
+
+	enc := xml.NewDecoder(r)
+	err := enc.Decode(&vatDetails)
+	return vatDetails, err
+}
+
+// Query function retrieves company details from vias service.
+// Input data is a struct with country code and vat number.
+// If the company exists and is registered as VAT client, the function returns
+// a struct with detailed information, e.g: company name and address.
+// Otherwise the function returns the struct with field Valid as False.
+// It returns pointer to the VatDetails struct and any error encounter.
+func Query(vatNo vatno.VATNo) (*VatDetails, error) {
+	return nil, nil
 }

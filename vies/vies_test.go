@@ -61,3 +61,51 @@ func TestDecodeResponse(t *testing.T) {
 	assertBoolEqual(t, "Valid", result.Valid, true)
 
 }
+
+func TestQuery(t *testing.T) {
+	testData := vatno.VATNo{
+		CountryCode: "GB",
+		VATNumber:   "333289454",
+	}
+
+	result, err := Query(testData)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if result == nil {
+		t.Fatal("No result")
+	}
+
+	assertBoolEqual(t, "Valid", result.Valid, true)
+	assertEqual(t, "CountryCode", result.CountryCode, "GB")
+	assertEqual(t, "VatNumber", result.VatNumber, "333289454")
+	assertEqual(t, "Name", result.Name, "BRITISH BROADCASTING CORPORATION")
+	assertEqual(t, "Error", result.Error, "")
+	assertEqual(t, "ErrorCode", result.ErrorCode, "")
+}
+
+func TestQueryWithWrongVatNumber(t *testing.T) {
+	testData := vatno.VATNo{
+		CountryCode: "GB",
+		VATNumber:   "012345678",
+	}
+
+	result, err := Query(testData)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if result == nil {
+		t.Fatal("No result")
+	}
+
+	assertBoolEqual(t, "Valid", result.Valid, false)
+	assertEqual(t, "CountryCode", result.CountryCode, "GB")
+	assertEqual(t, "VatNumber", result.VatNumber, "012345678")
+	assertEqual(t, "Name", result.Name, "---")
+	assertEqual(t, "Error", result.Error, "")
+	assertEqual(t, "ErrorCode", result.ErrorCode, "")
+}
