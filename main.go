@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-
-	"github.com/Mowinski/stx-next-go-workshop/vatno"
 )
 
 func abort(err error) {
@@ -13,9 +11,5 @@ func abort(err error) {
 }
 
 func main() {
-	vatNo, err := vatno.Read(os.Stdin)
-	if err != nil {
-		abort(err)
-	}
-	fmt.Println(vatNo)
+
 }

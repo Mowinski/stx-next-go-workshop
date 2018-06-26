@@ -59,5 +59,14 @@ func decodeResponse(r io.Reader) (VatDetails, error) {
 // Otherwise the function returns the struct with field Valid as False.
 // It returns pointer to the VatDetails struct and any error encounter.
 func Query(vatNo vatno.VATNo) (*VatDetails, error) {
-	return nil, nil
+	body := prepareViesRequestBody(vatNo)
+	response, err := sendViesPostRequest(body)
+	if err != nil {
+		return nil, err
+	}
+	vatDetails, err := decodeResponse(response.Body)
+	if err != nil {
+		return nil, err
+	}
+	return &vatDetails, nil
 }
