@@ -1,6 +1,6 @@
 # Taks 2
 
-Implement `writeTo` function in `main.go` file. 
+Implement `Print` function in `vies/print.go` file.
 
 To run test, call this command:
-```go test```
+```go test ./...```
