@@ -1,6 +1,6 @@
 # STX Next - Go Workshop
 
-This application verify VAT number in Europe (VIES)[https://ec.europa.eu/taxation_customs/business/vat/eu-vat-rules-topic/vat-identification-numbers_en].
+This application verify VAT number in Europe [VIES](https://ec.europa.eu/taxation_customs/business/vat/eu-vat-rules-topic/vat-identification-numbers_en).
 
 ## Example output for valid VAT number
 ```
