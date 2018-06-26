@@ -1,3 +1,5 @@
+[![GoDoc](https://godoc.org/github.com/Mowinski/stx-next-go-workshop?status.svg)](https://godoc.org/github.com/Mowinski/stx-next-go-workshop)
+
 # STX Next - Go Workshop
 
 This application verify VAT number in Europe [VIES](https://ec.europa.eu/taxation_customs/business/vat/eu-vat-rules-topic/vat-identification-numbers_en).
