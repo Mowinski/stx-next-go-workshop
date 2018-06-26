@@ -2,10 +2,17 @@ package vies
 
 import (
 	"bytes"
+	"strings"
 	"testing"
 
 	"github.com/Mowinski/stx-next-go-workshop/vatno"
 )
+
+func assertBoolEqual(t *testing.T, code string, result, expected bool) {
+	if result != expected {
+		t.Errorf("Wrong %s, expected '%t', got '%t'", code, expected, result)
+	}
+}
 
 func TestPrepareViesRequestBody(t *testing.T) {
 	testData := vatno.VATNo{
@@ -19,4 +26,38 @@ func TestPrepareViesRequestBody(t *testing.T) {
 	buf.ReadFrom(body)
 
 	assertEqual(t, "Body", buf.String(), expectedBody)
+}
+
+func TestDecodeResponse(t *testing.T) {
+	body := `
+	<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Body>
+		<checkVatResponse
+			xmlns="urn:ec.europa.eu:taxud:vies:services:checkVat:types">
+			<countryCode>TEST</countryCode>
+			<vatNumber>1234567890</vatNumber>
+			<requestDate>2018-06-16+02:00</requestDate>
+			<valid>true</valid>
+			<name>Test Name</name>
+			<address>Test Address</address>
+		</checkVatResponse>
+	</soap:Body>
+</soap:Envelope>`
+	bodyReader := strings.NewReader(body)
+
+	result, err := decodeResponse(bodyReader)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	assertEqual(t, "Error", result.Error, "")
+	assertEqual(t, "ErrorCode", result.ErrorCode, "")
+	assertEqual(t, "CountryCode", result.CountryCode, "TEST")
+	assertEqual(t, "VatNumber", result.VatNumber, "1234567890")
+	assertEqual(t, "RequestDate", result.RequestDate, "2018-06-16+02:00")
+	assertEqual(t, "Name", result.Name, "Test Name")
+	assertEqual(t, "Address", result.Address, "Test Address")
+	assertBoolEqual(t, "Valid", result.Valid, true)
+
 }

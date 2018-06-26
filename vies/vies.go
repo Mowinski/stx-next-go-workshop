@@ -2,8 +2,10 @@ package vies
 
 import (
 	"bytes"
+	"fmt"
 	"io"
 	"net/http"
+	"strings"
 
 	"github.com/Mowinski/stx-next-go-workshop/vatno"
 )
@@ -25,11 +27,23 @@ const viesReqPayloadTmpl = `
 const viesServiceUrl = "http://ec.europa.eu/taxation_customs/vies/services/checkVatService"
 
 func prepareViesRequestBody(vatDetail vatno.VATNo) io.Reader {
-	var body *bytes.Buffer
+	req := fmt.Sprintf(
+		viesReqPayloadTmpl,
+		vatDetail.CountryCode,
+		vatDetail.VATNumber,
+	)
+	body := bytes.NewBufferString(
+		strings.Replace(req, "\n", "", -1),
+	)
 	return body
 }
 
 func sendViesPostRequest(body io.Reader) (*http.Response, error) {
 	res, err := http.Post(viesServiceUrl, "application/xml", body)
 	return res, err
+}
+
+func decodeResponse(r io.Reader) (VatDetails, error) {
+	var vatDetails VatDetails
+	return vatDetails, nil
 }
